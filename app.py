@@ -9,6 +9,7 @@ from flask import (
     request,
     url_for,
 )
+from twilio.rest import Client
 
 load_dotenv()
 app = Flask(__name__)
@@ -16,16 +17,21 @@ app.secret_key = "ssssh don't tell anyone"
 
 TWILIO_PHONE_NUMBER = os.getenv('TWILIO_PHONE_NUMBER')
 
+client = Client()
+
 def get_sent_messages():
     # TODO: Make this return a collection of messages that were sent from the number
-    messages = []
+    messages = client.messages.list(from_=TWILIO_PHONE_NUMBER)
     return messages
 
 def send_message(to, body):
-    # TODO: Send the text message
-    pass
+    client.messages.create(
+        to=to,
+        from_=TWILIO_PHONE_NUMBER,
+        body=body
+    )
 
-@app.route("/", methods=["GET"])
+@app.route("/", methods=["GET"]) #INDEX PAGE
 def index():
     messages = get_sent_messages()
     return render_template("index.html", messages=messages)

@@ -5,3 +5,17 @@ Jinja2==2.10.3
 MarkupSafe==1.1.1
 python-dotenv==0.10.3
 Werkzeug==0.16.0
+
+certifi==2022.9.24
+charset-normalizer==2.1.1
+idna==3.4
+PyJWT==2.5.0
+pytz==2022.4
+requests==2.28.1
+twilio==7.14.1
+urllib3==1.26.12
+
+#set up venv: python3 -m venv .venv  
+#activate venv: source ./.venv/bin/activate 
+#install twilio: pip3 install Twilio  
+#check list of requirements: pip3 freeze
